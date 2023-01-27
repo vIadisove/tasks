@@ -2,26 +2,22 @@
 и возвращает факториал этого числа.*/
 
 function factorial(number){
-    let result = 1;
-    while(number){
-        result *= number;
-        number -=1
-    }
-    return result;
+    if (number != 1)
+        return number * factorial(number - 1)
+    else 
+        return 1
     
 }
-let num = 5;
+const num = 8;
 console.log("Факториал: " + factorial(num));
 
 
 /*2 Функция принимает строку и возвращает длину самого
 длинного слова в этой строке.*/
 function LengthWord(str) {
-    let arr = str.split(/\s|_|(?=[A-Z])|-/)
+    const arr = str.split(/\s|_|(?=[A-Z])|-/)
     
-    arr.sort(function(a,b){
-        return b.length - a.length;
-    });
+    arr.sort((a,b) => b.length - a.length);
     return arr[0].length;
     
 }
@@ -32,22 +28,22 @@ console.log(LengthWord("My everyday meals"));
 чисел и возвращает массив состоящий из
 наибольшего числа каждого предоставленного подмассива.*/
 
-let arr = [[3,56,43,9],[35,81,3,5],[320,84,4,28],[1,2,3000,900]];
+const arr = [[3,56,43,9],[35,81,3,5],[320,84,4,28],[1,2,3000,900]];
 function findMax(arr) {
-    let arr1 = [];
+    const arrResult = [];
     for (let i = 0;i<arr.length;i++){
-        arr[i].sort(function(a,b){return b-a});
-        arr1.push(arr[i][0]);
+        arr[i].sort((a,b)=>b-a);
+        arrResult.push(arr[i][0]);
     }
-    return arr1;
+    return arrResult;
 }
 console.log(findMax(arr));
 
 /*4 Функция принимает строку и целое число и обрезает строку,
 если она длиннее заданной максимальной длины строки
 и возвращает обрезанную строку с «…» в конце */
-let str = "мама мыла раму"
-let max = 9;
+const str = "мама мыла раму"
+const max = 9;
 function splitStr (str, num) {
     if (str.length>num){
         str = str.slice(0, num);
@@ -63,83 +59,87 @@ console.log(splitStr(str,max));
 формате: каждое слово начинается с заглавной буквы, остальные в нижнем регистре.
 */
 
-function upperCase(str) {
-    let arr = str.split(/\s|_|(?=[A-Z])|-/)
-    let str1 = arr.join(' ');
-    let str2 = str1.replace(/(^|\s)\S/g, function(a){return a.toUpperCase()});
-    return str2;
+function upperCase(str) {    
+    const strRes = str.split(/\s|_|(?=[A-Z])|-/).join(' ').replace(/(^|\s)\S/g, (a) => a.toUpperCase());
+    return strRes;
 }
-console.log(upperCase('thisIs pop_spinalYap'));
+console.log(upperCase('thisIs pop_spinalYap-papp'));
 
 /*6 Функция принимает два массива и целое число n. Функция
 копирует каждый элемент первого массива во второй по порядку начиная с
 индекса n второго массива и возвращает новый массив.*/
 
-let arr1 = [1,2,3,4];let arr2 = [9,8,7,6,90,98];let num1 = 2;
-function newArr (arr, arr1, num) {for (let i = 0 ; i<arr.length; i++) {
+const arrFirst = [1,2,3,4];
+const arrSecond = [9,8,7,6,90,98];
+const numbersix = 2;
+function newArr (arr, arr1, num) {
+    for (let i = 0 ; i<arr.length; i++) {
     arr1.splice(num+i,0,arr[i]);
 }
     return arr1;
 }
-console.log(newArr(arr1,arr2,num1))
+console.log(newArr(arrFirst,arrSecond,numbersix))
 
 /*7 Функция принимает массив и удаляет в нем все "ложные
 значения".*/
 
-arr = [NaN, 0, 77, false, -17, '', 99, null, true];
+const arrFalse = [NaN, 0, 77, false, -17, '', 99, null, true];
 
 function filterF(arr) {
-    return arr.filter(function(a) { return a; });
+    return arr.filter((a)=> a);
 }
-console.log(filterF(arr))
+console.log(filterF(arrFalse))
 
 /*8 Функцию принимает массив, состоящий из двух строк,
 функция возвращает true, если строка в первом элементе массива содержит все
 буквы строки во втором элементе массива.(регистр игнорируется)*/
 
-arr = ["абВгДддддддГГггГГ","абвГд"];
+const arrWord = ["абВгДддддддГГггГГ","абвГд"];
 function sravnStr(arr) {
-    let arr1 = arr[0].split(/\s/).join('').toLowerCase();
-    let arr2 = arr1.split(/(?=.)/);
+    const arr1 = arr[0].split(/\s/).join('').toLowerCase();
+    const arr2 = arr1.split(/(?=.)/);
     let count = 0;
-    let str = arr[1].toLowerCase()
+    const str = arr[1].toLowerCase()
     for (let i = 0; i<arr2.length; i++){
         if (str.includes(arr2[i])){count+=1;}
     }
     if(arr2.length==count){return true}
     return false;
 }
-console.log(sravnStr(arr));
+console.log(sravnStr(arrWord));
 
 /*9  Функция принимает масссив и целое число, функция
 разбивает массив на группы длиной size и
 возвращает их в виде двумерного массива.*/
 
-let arr55 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]; let size = 6;
+const arrNine = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+const size = 6;
 function rezArr(arr, size) {
-    let arr1 = arr.slice(0,size);
-    let arr2 = arr.slice(size,size+size);
-    let arr3 = [];
-    arr3[0] = arr1;
-    arr3[1] = arr2;
-    return arr3;
+    const arr1 = arr.slice(0,size);
+    const arr2 = arr.slice(size,size+size);
+    const arrRes = [];
+    arrRes[0] = arr1;
+    arrRes[1] = arr2;
+    return arrRes;
 }
-console.log(rezArr(arr55,size));
+console.log(rezArr(arrNine,size));
 
 /*10*/
-let arr56 = [];function sumTo(n, arr) {
-    if (n == 1){ arr56.push(1); return arr56} ;
-    arr56.push(n);
-    sumTo(n-1);
-    return arr56;
+const arrTen = [];
+function sumTo(n, arr) {
+    if (n == 1){ arr.push(1);
+                return arr} ;
+    arr.push(n);
+    sumTo(n-1, arr);
+    return arr;
 }
-console.log( sumTo(19, arr56) );
+console.log( sumTo(19, arrTen) );
 
 
 /* 11 Функция аналог map*/
 
 Array.prototype.mymap = function(cb) {
-    let arrR = [];
+    const arrR = [];
 
     for (let index = 0; index < this.length; index++) {
         arrR.push(cb(this[index], index, this));
@@ -147,13 +147,13 @@ Array.prototype.mymap = function(cb) {
 
     return arrR;
 }
-let arr58 = [2,4,6,8,10];
-console.log(arr58.mymap(function(a){return a + 1;}))
+const arrEleven = [2,4,6,8,10];
+console.log(arrEleven.mymap((a)=> a + 1))
 
 /*12*/
 
 Array.prototype.myfilter = function(cb) {
-    let arrR = [];
+    const arrR = [];
     for (let i = 0; i < this.length; i++) {
         if (cb(this[i], i, this)) {
             arrR.push(this[i])
@@ -163,8 +163,8 @@ Array.prototype.myfilter = function(cb) {
     return arrR;
 }
 
-let arrList2 = [2,6,4,2,7,2,2];
-console.log(arrList2.myfilter(function(a){return a == 2}))
+const arrListTw = [2,6,4,2,7,2,2];
+console.log(arrListTw.myfilter((a) => a == 2))
 
 
 /* 13 Функция аналог find*/
@@ -178,21 +178,15 @@ Array.prototype.myfind = function(cb) {
     return undefined;
 }
 
-function isMyFavoriteHobby(element, index, array) {
-  const myFavoriteHobby = 'пить кофе'
 
-  return element == myFavoriteHobby
-}
-
-let currentToDoList = [
-  'смотреть сериальчики',
-  'читать книгу',
-  'пить кофе',
-  'гладить кота',
-  'гулять',
+const arrThirteen = [
+  'Раз',
+  'Два',
+  'Три',
+  'Четыре'
 ]
 
-console.log(currentToDoList.myfind(isMyFavoriteHobby))
+console.log(arrThirteen.myfind((a)=>a==='Три'))
 
 /* 14 Функция аналог some.*/
 
@@ -206,8 +200,8 @@ Array.prototype.mysome = function(cb) {
     return false;
 }
 
-let arrList = [2,6,4,8,7,9];
-console.log(arrList.mysome(function(a){return a == 7}))
+const arrFourteen = [2,6,4,8,7,9];
+console.log(arrFourteen.mysome((a)=> a == 7))
 
 /* 15 Функция аналог every.*/
 
@@ -223,14 +217,14 @@ Array.prototype.myevery = function(cb) {
     return false;
 }
 
-let arrList1 = [2,6,4,8,9];
-console.log(arrList1.myevery(function(a){return a !== 7}))
+const arrFifteen = [2,6,4,8,9];
+console.log(arrFifteen.myevery((a)=> a !== 7))
 
 
 /* 16 Функция принимает на вход массив из двух чисел и возвращает
 сумму этих двух чисел плюс сумму всех чисел между ними.*/
 
-let arr57 = [2,1092]; 
+const arrSixteen = [2,5]; 
 function sumNum (arr) {
     let summ = arr[0];
     let count = arr[0]; 
@@ -239,12 +233,13 @@ function sumNum (arr) {
         fsum = fsum + (summ + i);
         count+=1;
     }
-    let nsum = arr[0] + arr[1];
-    let str = 'сумма чисел: '+nsum+', сумма между числами: '+fsum;
+    const nsum = arr[0] + arr[1];
+    const result = nsum + fsum;
+    const str = 'сумма чисел: '+nsum+', сумма между числами: '+fsum+', cумма двух чисел плюс сумма между числами: '+result;
     return str
 }
 
-console.log(sumNum(arr57));
+console.log(sumNum(arrSixteen));
 
 /*20 Функция конвертирует строку в spinal-case регистр.*/
 function spinalCase(str) {
